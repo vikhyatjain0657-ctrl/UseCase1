@@ -23,6 +23,7 @@ public class PalindromeCheckerApp {
      * Application entry point.
      * This is the first method executed by the JVIN
      * when the program starts.
+     *
      * @param args Command-line arguments
      */
     public static void main(String[] args){{
