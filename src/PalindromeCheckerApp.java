@@ -1,18 +1,18 @@
 import java.util.Scanner;
-
+import java.util.Deque;
+import java.util.ArrayDeque;
 /**MAIN CLASS UseCaselPalindromeApp
 
-Use Case 4: Character Array Based Validation
+Use Case 7: Deque Based Optimized Palindrome Checker
 
  Description:
 
- This class validates a palindrome by converting the string into a character array and comparing characters using the two-pointer technique.
- At this stage, the application:
- Converts string to char array
- Uses start and end pointers
- Compares characters efficiently
- Displays the result
- This reduces extra memory usage.
+ This class validates a palindrome using a Deque (Double Ended Queue).
+ Characters are inserted into the deque and then compared by removing elements from both ends:
+ removeFirst()
+ removeLast()
+ This avoids reversing the string and provides an efficient front-to-back comparison approach.
+ This use case demonstrates optimal bidirectional traversal using Deque.
 
 @author Vikhyat
 @version 1.0
@@ -30,19 +30,21 @@ public class PalindromeCheckerApp {
         Scanner in = new Scanner(System.in);
         System.out.print("Enter Text: ");
         String input = in.next();
-        char[] chars = input.toCharArray();
-        int start = 0;
-        int end = chars.length - 1;
+        Deque<Character> deque = new ArrayDeque<>();
+
+        for (char c : input.toCharArray()) {
+            deque.addLast(c);
+        }
+
         boolean isPalindrome = true;
 
-        while (start < end) {
-            if (chars[start] != chars[end]) {
+        while (deque.size() > 1) {
+            if (!deque.removeFirst().equals(deque.removeLast())) {
                 isPalindrome = false;
                 break;
             }
-            start++;
-            end--;
         }
+
         System.out.println("Is Palindrome?: " + isPalindrome);
     }
     }
