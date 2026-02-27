@@ -1,5 +1,5 @@
+import java.util.LinkedList;
 import java.util.Scanner;
-
 /**MAIN CLASS UseCaselPalindromeApp
 
 Use Case 10: Case-Insensitive & Space-Ignored Palindrome
