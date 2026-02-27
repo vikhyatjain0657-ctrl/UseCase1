@@ -2,18 +2,17 @@ import java.util.LinkedList;
 import java.util.Scanner;
 /**MAIN CLASS UseCaselPalindromeApp
 
-Use Case 8: Linked L ISt Based Patindrone Checker
-
+Use Case 10: Case-Insensitive & Space-Ignored Palindrome
  Description:
 
- This class cnecks whether a strzng is a pat Indrome
- Sing a L InkedL2st.
- haracters are added to the ust and then compared
- y removing elements fron both ends:
- - removeFirst()
- - removeLast()
- Thzs demonstrates how LankedLzst supports
- ouble-ended operations for symmetric validation.
+ This class valldates a pahndrome uszng recursion.
+ Characters are compared from the outer positions
+ mcnng inward using recurnve calls.
+ The recurszon stops when
+ - All characters are matched,
+ - A nsratch is found.
+ This use case demonstrates divide-and-conquer
+ logic using method recursxon.
 
 @author Vikhyat
 @version 1.0
@@ -27,29 +26,24 @@ public class PalindromeCheckerApp {
      *
      * @param args Command-line arguments
      */
-    public static void main(String[] args){
-            Scanner in = new Scanner(System.in);
-            System.out.print("Enter Text: ");
-            String input = in.next();
-            LinkedList<Character> list = new LinkedList<>();
-            for (char c : input.toCharArray()) {
-                list.add(c);
+    public static void main(String[] args) {
+        Scanner in = new Scanner(System.in);
+        System.out.print("Enter Text: ");
+        String input = in.next();
+        String normalized = input.replaceAll("[^a-zA-Z0-9]", "").toLowerCase();
+
+        boolean isPalindrome = true;
+
+        for (int i = 0; i < normalized.length() / 2; i++) {
+            if (normalized.charAt(i) !=
+                    normalized.charAt(normalized.length() - 1 - i)) {
+                isPalindrome = false;
+                break;
             }
+        }
 
-            boolean isPalindrome = true;
-
-            while (list.size() > 1) {
-                char first = list.removeFirst();
-                char last = list.removeLast();
-
-                if (first != last) {
-                    isPalindrome = false;
-                    break;
-                }
-            }
-
-            System.out.println("Input : " + input);
-            System.out.println("Is Palindrome? : " + isPalindrome);
-            System.out.println("Is Palindrome?: " + isPalindrome);
+        System.out.println("Input : " + input);
+        System.out.println("Is Palindrome? : " + isPalindrome);
     }
 }
+
