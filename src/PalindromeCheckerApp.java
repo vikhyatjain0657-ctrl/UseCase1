@@ -2,7 +2,8 @@ import java.util.LinkedList;
 import java.util.Scanner;
 /**MAIN CLASS UseCaselPalindromeApp
 
-Use Case 10: Case-Insensitive & Space-Ignored Palindrome
+Use Case 12:  Strategy Pattern for Palindrome Algorithms (Advanced)
+
  Description:
 
  This class valldates a pahndrome uszng recursion.
@@ -19,31 +20,45 @@ Use Case 10: Case-Insensitive & Space-Ignored Palindrome
 */
 
 public class PalindromeCheckerApp {
-    /**
-     * Application entry point.
-     * This is the first method executed by the JVIN
-     * when the program starts.
-     *
-     * @param args Command-line arguments
-     */
+
     public static void main(String[] args) {
+
         Scanner in = new Scanner(System.in);
+
         System.out.print("Enter Text: ");
-        String input = in.next();
-        String normalized = input.replaceAll("[^a-zA-Z0-9]", "").toLowerCase();
+        String input = in.nextLine().toLowerCase();
 
-        boolean isPalindrome = true;
+        PalindromeStrategy strategy = new StackStrategy();
+        boolean result = strategy.check(input);
 
-        for (int i = 0; i < normalized.length() / 2; i++) {
-            if (normalized.charAt(i) !=
-                    normalized.charAt(normalized.length() - 1 - i)) {
-                isPalindrome = false;
-                break;
+        System.out.println("Input : " + input);
+        System.out.println("Is Palindrome: " + result);
+
+        in.close();
+    }
+}
+
+interface PalindromeStrategy {
+    boolean check(String input);
+}
+
+class StackStrategy implements PalindromeStrategy {
+
+    public boolean check(String input) {
+
+        java.util.Stack<Character> stack = new java.util.Stack<>();
+
+        for (char c : input.toCharArray()) {
+            stack.push(c);
+        }
+
+        for (char c : input.toCharArray()) {
+            if (c != stack.pop()) {
+                return false;
             }
         }
 
-        System.out.println("Input : " + input);
-        System.out.println("Is Palindrome? : " + isPalindrome);
+        return true;
     }
 }
 
