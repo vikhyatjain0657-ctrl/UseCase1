@@ -1,18 +1,19 @@
+import java.util.LinkedList;
 import java.util.Scanner;
-
 /**MAIN CLASS UseCaselPalindromeApp
 
 Use Case 12:  Strategy Pattern for Palindrome Algorithms (Advanced)
 
  Description:
 
- This class validates a palindrome by converting the string into a character array and comparing characters using the two-pointer technique.
- At this stage, the application:
- Converts string to char array
- Uses start and end pointers
- Compares characters efficiently
- Displays the result
- This reduces extra memory usage.
+ This class valldates a pahndrome uszng recursion.
+ Characters are compared from the outer positions
+ mcnng inward using recurnve calls.
+ The recurszon stops when
+ - All characters are matched,
+ - A nsratch is found.
+ This use case demonstrates divide-and-conquer
+ logic using method recursxon.
 
 @author Vikhyat
 @version 1.0
@@ -60,3 +61,4 @@ class StackStrategy implements PalindromeStrategy {
         return true;
     }
 }
+
