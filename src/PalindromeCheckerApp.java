@@ -2,7 +2,7 @@ import java.util.LinkedList;
 import java.util.Scanner;
 /**MAIN CLASS UseCaselPalindromeApp
 
-Use Case 12:  Strategy Pattern for Palindrome Algorithms (Advanced)
+Use Case 13: Performance Comparison
 
  Description:
 
@@ -26,39 +26,22 @@ public class PalindromeCheckerApp {
         Scanner in = new Scanner(System.in);
 
         System.out.print("Enter Text: ");
-        String input = in.nextLine().toLowerCase();
-
-        PalindromeStrategy strategy = new StackStrategy();
-        boolean result = strategy.check(input);
-
-        System.out.println("Input : " + input);
-        System.out.println("Is Palindrome: " + result);
-
-        in.close();
-    }
-}
-
-interface PalindromeStrategy {
-    boolean check(String input);
-}
-
-class StackStrategy implements PalindromeStrategy {
-
-    public boolean check(String input) {
-
-        java.util.Stack<Character> stack = new java.util.Stack<>();
-
-        for (char c : input.toCharArray()) {
-            stack.push(c);
-        }
-
-        for (char c : input.toCharArray()) {
-            if (c != stack.pop()) {
-                return false;
+        String input = in.nextLine();
+        long startTime = System.nanoTime();
+        boolean isPalindrome = true;
+        int start = 0;
+        int end = input.length() - 1;
+        while (start < end) {
+            if (input.charAt(start) != input.charAt(end)) {
+                isPalindrome = false;
+                break;
             }
         }
+        long endTime = System.nanoTime();
+        long executionTime = endTime - startTime;
 
-        return true;
+        System.out.println("Input : " + input);
+        System.out.println("Is Palindrome : " + isPalindrome);
+        System.out.println("Execution Time : " + executionTime);
     }
 }
-
